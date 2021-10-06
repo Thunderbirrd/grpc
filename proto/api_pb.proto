@@ -1,0 +1,24 @@
+syntax = "proto3";
+package api_pb;
+
+import "google/api/annotations.proto";
+
+message InnRequest {
+    string inn = 1;
+}
+message InnResponse {
+    string inn = 1;
+    string kpp = 2;
+    string name = 3;
+    string ceo_name = 4;
+}
+
+service InnService {
+    rpc GetInfoByInn (InnRequest) returns (InnResponse) {
+        option (google.api.http) = {
+            get: "/inn/{inn}"
+        };
+    }
+}
+
+option go_package = "/pb";
